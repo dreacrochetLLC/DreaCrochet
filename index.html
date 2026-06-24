@@ -41,7 +41,8 @@
       pointer-events: none; z-index: 9999;
       opacity: 0.4;
     }
-/* ── NAVBAR ── */
+
+    /* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -242,7 +243,7 @@
       border-color: rgba(255,255,255,0.04);
     }
 
-    .hero-label {
+     .hero-label {
       position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
       font-family: var(--serif); font-style: italic;
       font-size: 0.85rem; color: rgba(255,255,255,0.4);
@@ -277,7 +278,8 @@
     .section-label::after {
       content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--gray);
     }
- .section-title {
+
+    .section-title {
       font-family: var(--serif);
       font-size: clamp(2rem, 4vw, 3.4rem);
       font-weight: 300; line-height: 1.1;
@@ -407,7 +409,7 @@
     .variant-berry .bag-mini-strap { background: #6bbf73; }
     .variant-berry .product-card-img { background: #1a1018; }
 
-    .variant-terra .bag-mini-body { background: #e8734a; }
+        .variant-terra .bag-mini-body { background: #e8734a; }
     .variant-terra .bag-mini-strap { background: #6bbf73; }
     .variant-terra .product-card-img { background: #1c1209; }
 
@@ -443,7 +445,8 @@
       background: var(--black); color: var(--white);
       padding: 0.3rem 0.7rem;
     }
-/* ── FEATURES STRIP ── */
+
+    /* ── FEATURES STRIP ── */
     .features {
       background: var(--gray);
       padding: 4rem 8vw;
@@ -495,7 +498,8 @@
     }
     .newsletter .section-title { color: var(--white); margin-bottom: 0.8rem; }
     .newsletter p { font-size: 0.88rem; color: rgba(255,255,255,0.4); margin-bottom: 2.5rem; }
-  .newsletter-form {
+
+    .newsletter-form {
       display: flex; flex-direction: column; gap: 1rem; max-width: 480px; margin: 0 auto;
     }
     .newsletter-form input {
@@ -604,7 +608,8 @@
     </ul>
     <button class="nav-bag">Bag (0)</button>
   </nav>
-<!-- HERO -->
+
+  <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-left">
       <div class="stitch-line"></div>
@@ -662,7 +667,7 @@
           </span>
         </div>
 
-      </div>
+              </div>
     </div>
   </section>
 
@@ -883,7 +888,7 @@
 
   <!-- CART SIDEBAR -->
   <div id="cart-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200;" onclick="closeCart()"></div>
-  <div id="cart-sidebar" style="position:fixed; top:0; right:-480px; width:480px; max-width:95vw; height:100vh; background:var(--white); z-index:201; transition:right 0.35s ease; display:flex; flex-direction:column; box-shadow:-4px 0 24px rgba(0,0,0,0.12);">
+  <div id="cart-sidebar" style="position:fixed; top:0; right:-480px; width:480px; max-width:100vw; height:100%; height:100dvh; background:var(--white); z-index:201; transition:right 0.35s ease; display:flex; flex-direction:column; box-shadow:-4px 0 24px rgba(0,0,0,0.12); overflow:hidden;">
     
     <!-- HEADER -->
     <div style="display:flex; justify-content:space-between; align-items:center; padding:1.8rem 2rem; border-bottom:1px solid var(--gray);">
@@ -892,11 +897,11 @@
     </div>
 
     <!-- BAG VIEW -->
-    <div id="bag-view" style="display:flex; flex-direction:column; flex:1; overflow:hidden; min-height:0;">
-      <div id="cart-items" style="flex:1; overflow-y:auto; padding:1.5rem 2rem; min-height:0;">
+    <div id="bag-view" style="display:flex; flex-direction:column; flex:1; overflow:hidden; min-height:0; position:relative;">
+      <div id="cart-items" style="flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:1.5rem 2rem; min-height:0; padding-bottom:120px;">
         <p id="cart-empty" style="font-size:0.9rem; color:var(--mid); text-align:center; margin-top:3rem;">Your bag is empty.</p>
       </div>
-      <div style="padding:1.5rem 2rem; border-top:1px solid var(--gray); flex-shrink:0;">
+      <div style="padding:1.5rem 2rem; border-top:1px solid var(--gray); flex-shrink:0; position:sticky; bottom:0; background:var(--white);">
         <div style="display:flex; justify-content:space-between; margin-bottom:1.2rem;">
           <span style="font-family:var(--sans); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase;">Total</span>
           <span id="cart-total" style="font-family:var(--serif); font-size:1.3rem;">$0.00</span>
@@ -1125,7 +1130,8 @@
             const notes = document.getElementById('f-notes').value.trim();
             const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
             const itemsList = cart.map(i => i.name + ' x' + i.qty + ' — $' + (i.price * i.qty).toFixed(2)).join('\n');
-// Send to Formspree
+
+            // Send to Formspree
             try {
               await fetch('https://formspree.io/f/xdaranjy', {
                 method: 'POST',
