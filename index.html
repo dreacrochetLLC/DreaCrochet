@@ -83,11 +83,12 @@
       font-family: var(--sans); transition: background 0.25s;
     }
     .nav-bag:hover { background: var(--accent1); }
-/* ── HERO ── */
+
+    /* ── HERO ── */
     .hero {
       min-height: 100svh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       padding-top: 72px;
     }
 
@@ -154,13 +155,13 @@
         transparent 8px, transparent 16px
       );
     }
+
     .hero-right {
       background: var(--black);
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
-
-    /* Illustrative hero visual made with pure CSS */
+/* Illustrative hero visual made with pure CSS */
     .hero-bag-scene {
       position: relative; width: 320px; height: 400px;
     }
@@ -193,7 +194,8 @@
         0deg, transparent, transparent 22px, rgba(0,0,0,0.06) 22px, rgba(0,0,0,0.06) 24px
       );
     }
-/* Vine strap left */
+
+    /* Vine strap left */
     .strap {
       position: absolute; bottom: 290px; 
       width: 14px; height: 120px;
@@ -286,7 +288,7 @@
 
     /* ── ABOUT ── */
     .about {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6vw;
+      display: grid; grid-template-columns: 1fr; gap: 6vw;
       align-items: center;
     }
     .about-text p {
@@ -331,7 +333,8 @@
       font-family: var(--serif); font-size: 3.5rem; font-weight: 300;
       display: block; color: var(--black); line-height: 1;
     }
-/* ── PRODUCT SECTION ── */
+
+    /* ── PRODUCT SECTION ── */
     .products { background: var(--black); color: var(--white); }
     .products .section-label { color: rgba(255,255,255,0.35); }
     .products .section-label::after { background: rgba(255,255,255,0.12); }
@@ -404,8 +407,7 @@
     .variant-berry .bag-mini-body { background: #c97db5; }
     .variant-berry .bag-mini-strap { background: #6bbf73; }
     .variant-berry .product-card-img { background: #1a1018; }
-
-    .variant-terra .bag-mini-body { background: #e8734a; }
+.variant-terra .bag-mini-body { background: #e8734a; }
     .variant-terra .bag-mini-strap { background: #6bbf73; }
     .variant-terra .product-card-img { background: #1c1209; }
 
@@ -496,19 +498,19 @@
     .newsletter p { font-size: 0.88rem; color: rgba(255,255,255,0.4); margin-bottom: 2.5rem; }
 
     .newsletter-form {
-      display: flex; gap: 0; max-width: 480px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1rem; max-width: 480px; margin: 0 auto;
     }
     .newsletter-form input {
-      flex: 1; background: transparent;
-      border: 1px solid rgba(255,255,255,0.2); border-right: none;
+      width: 100%; background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
       padding: 0.9rem 1.2rem; color: var(--white);
       font-family: var(--sans); font-size: 0.85rem;
       outline: none; transition: border-color 0.25s;
     }
     .newsletter-form input::placeholder { color: rgba(255,255,255,0.25); }
-    .newsletter-form input:focus { border-color: var(--accent1); }
+    .newsletter-form input:focus { border-color: var(--black); }
     .newsletter-form button {
-      background: var(--black); border: 1px solid var(--black);
+      width: 100%; background: var(--black); border: 1px solid var(--black);
       color: var(--white); padding: 0.9rem 1.6rem; cursor: pointer;
       font-family: var(--sans); font-size: 0.7rem;
       letter-spacing: 0.16em; text-transform: uppercase;
@@ -578,9 +580,9 @@
       .hero-right { display: none; }
       .about { grid-template-columns: 1fr; }
       .about-visual { display: none; }
-      .product-grid { grid-template-columns: 1fr 1fr; }
-      .features { grid-template-columns: 1fr 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       nav { padding: 1rem 5vw; }
@@ -624,27 +626,7 @@
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="hero-circle"></div>
-      <div class="hero-circle hero-circle-2"></div>
-      <div class="hero-bag-scene">
-        <!-- vine straps -->
-        <div class="strap strap-left">
-          <div class="tendril tendril-1"></div>
-          <div class="tendril tendril-2"></div>
-          <div class="tendril tendril-3"></div>
-        </div>
-        <div class="strap strap-right">
-          <div class="tendril tendril-1"></div>
-          <div class="tendril tendril-2"></div>
-        </div>
-        <!-- bag body -->
-        <div class="bag-body"></div>
-        <!-- charm -->
-        <div class="charm">🍋</div>
-      </div>
-      <p class="hero-label">Crochet Fruit Market Bag — Vine Strap Edition</p>
-    </div>
+
   </section>
 
   <!-- MARQUEE -->
@@ -682,10 +664,7 @@
             Every bag begins as<br>a single strand of<br>possibility.
           </span>
         </div>
-        <div class="about-card about-card-accent">
-          <span class="about-number">100%</span>
-          Handcrafted<br>in every stitch
-        </div>
+
       </div>
     </div>
   </section>
@@ -699,7 +678,6 @@
       </div>
       <p>Each bag is crocheted to order and finished with a unique vine strap and a fruit charm of your choice. No two are exactly alike.</p>
     </div>
-
     <div class="product-grid">
       <!-- Card 1 -->
       <div class="product-card variant-berry fade-up">
@@ -712,7 +690,7 @@
           <p class="product-card-sub">Cherry Red · Vine Strap · Strawberry Charm</p>
           <div class="product-card-footer">
             <span class="product-price">$59.99</span>
-            <button class="add-btn">Add to Bag</button>
+            <button class="add-btn" onclick="addToCart('Strawberry Market Bag', 59.99)">Add to Bag</button>
           </div>
         </div>
       </div>
@@ -726,7 +704,7 @@
           <p class="product-card-sub">Cherry Red · Vine Strap · Cherry Charm</p>
           <div class="product-card-footer">
             <span class="product-price">$59.99</span>
-            <button class="add-btn">Add to Bag</button>
+            <button class="add-btn" onclick="addToCart('Cherry Market Bag', 59.99)">Add to Bag</button>
           </div>
         </div>
       </div>
@@ -741,7 +719,7 @@
           <p class="product-card-sub">Citrus Yellow · Vine Strap · Lemon Charm</p>
           <div class="product-card-footer">
             <span class="product-price">$59.99</span>
-            <button class="add-btn">Add to Bag</button>
+            <button class="add-btn" onclick="addToCart('Lemon Market Bag', 59.99)">Add to Bag</button>
           </div>
         </div>
       </div>
@@ -755,7 +733,7 @@
           <p class="product-card-sub">Navy Blue · Vine Strap · Blueberry Charm</p>
           <div class="product-card-footer">
             <span class="product-price">$59.99</span>
-            <button class="add-btn">Add to Bag</button>
+            <button class="add-btn" onclick="addToCart('Blueberry Market Bag', 59.99)">Add to Bag</button>
           </div>
         </div>
       </div>
@@ -769,7 +747,7 @@
           <p class="product-card-sub">Deep Plum · Vine Strap · Grape Charm</p>
           <div class="product-card-footer">
             <span class="product-price">$59.99</span>
-            <button class="add-btn">Add to Bag</button>
+            <button class="add-btn" onclick="addToCart('Grape Market Bag', 59.99)">Add to Bag</button>
           </div>
         </div>
       </div>
@@ -803,7 +781,6 @@
       <p class="feature-desc">Arrives wrapped in tissue with a handwritten note — luxury from unboxing to carry.</p>
     </div>
   </div>
-
 
 
   <!-- NEWSLETTER -->
@@ -889,8 +866,7 @@
         }, 1800);
       });
     });
-
-    // Newsletter
+// Newsletter
     document.querySelector('.newsletter-form button').addEventListener('click', function() {
       const input = this.previousElementSibling;
       if (input.value) {
@@ -903,6 +879,106 @@
         }, 3000);
       }
     });
+  </script>
+
+  <!-- CART SIDEBAR -->
+  <div id="cart-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200;" onclick="closeCart()"></div>
+  <div id="cart-sidebar" style="position:fixed; top:0; right:-420px; width:420px; max-width:95vw; height:100vh; background:var(--white); z-index:201; transition:right 0.35s ease; display:flex; flex-direction:column; box-shadow:-4px 0 24px rgba(0,0,0,0.12);">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:1.8rem 2rem; border-bottom:1px solid var(--gray);">
+      <h2 style="font-family:var(--serif); font-size:1.4rem; font-weight:300;">Your Bag</h2>
+      <button onclick="closeCart()" style="background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--black);">✕</button>
+    </div>
+    <div id="cart-items" style="flex:1; overflow-y:auto; padding:1.5rem 2rem;">
+      <p id="cart-empty" style="font-size:0.9rem; color:var(--mid); text-align:center; margin-top:3rem;">Your bag is empty.</p>
+    </div>
+    <div style="padding:1.5rem 2rem; border-top:1px solid var(--gray);">
+      <div style="display:flex; justify-content:space-between; margin-bottom:1.2rem;">
+        <span style="font-family:var(--sans); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase;">Total</span>
+        <span id="cart-total" style="font-family:var(--serif); font-size:1.3rem;">$0.00</span>
+      </div>
+      <button onclick="checkout()" style="width:100%; background:var(--black); color:var(--white); border:none; padding:1rem; font-family:var(--sans); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; transition:background 0.25s;" onmouseover="this.style.background='#333'" onmouseout="this.style.background='var(--black)'">Checkout via Email</button>
+      <p style="font-size:0.7rem; color:var(--mid); text-align:center; margin-top:0.8rem;">Orders placed by email at DreaCrochetLLC@gmail.com</p>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function openCart() {
+      document.getElementById('cart-sidebar').style.right = '0';
+      document.getElementById('cart-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      document.getElementById('cart-sidebar').style.right = '-420px';
+      document.getElementById('cart-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      renderCart();
+      openCart();
+    }
+
+    function removeFromCart(name) {
+      cart = cart.filter(i => i.name !== name);
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const empty = document.getElementById('cart-empty');
+      const totalEl = document.getElementById('cart-total');
+      const bagBtn = document.querySelector('.nav-bag');
+
+      const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      const count = cart.reduce((sum, i) => sum + i.qty, 0);
+
+      totalEl.textContent = '$' + total.toFixed(2);
+      bagBtn.textContent = 'Bag (' + count + ')';
+
+      if (cart.length === 0) {
+        empty.style.display = 'block';
+        container.querySelectorAll('.cart-item').forEach(el => el.remove());
+        return;
+      }
+
+      empty.style.display = 'none';
+      container.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:1rem 0; border-bottom:1px solid var(--gray);';
+        div.innerHTML = `
+          <div>
+            <p style="font-family:var(--serif); font-size:1rem; margin-bottom:0.2rem;">${item.name}</p>
+            <p style="font-size:0.75rem; color:var(--mid);">Qty: ${item.qty} &nbsp;·&nbsp; $${(item.price * item.qty).toFixed(2)}</p>
+          </div>
+          <button onclick="removeFromCart('${item.name}')" style="background:none; border:none; color:var(--mid); cursor:pointer; font-size:1rem;">✕</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function checkout() {
+      if (cart.length === 0) { openCart(); return; }
+      const items = cart.map(i => `${i.name} x${i.qty} ($${(i.price * i.qty).toFixed(2)})`).join('%0A');
+      const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      const subject = 'DreaCrochet Order';
+      const body = `Hi, I would like to order:%0A%0A${items}%0A%0ATotal: $${total.toFixed(2)}%0A%0APlease let me know next steps!`;
+      window.location.href = `mailto:DreaCrochetLLC@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Hook up nav bag button
+    document.querySelector('.nav-bag').addEventListener('click', openCart);
   </script>
 </body>
 </html>
