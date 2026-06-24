@@ -24,7 +24,8 @@
     }
 
     html { scroll-behavior: smooth; }
-body {
+
+    body {
       background: var(--white);
       color: var(--black);
       font-family: var(--sans);
@@ -40,8 +41,7 @@ body {
       pointer-events: none; z-index: 9999;
       opacity: 0.4;
     }
-
-    /* ── NAVBAR ── */
+/* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -90,7 +90,8 @@ body {
       grid-template-columns: 1fr;
       padding-top: 72px;
     }
-     .hero-left {
+
+    .hero-left {
       display: flex; flex-direction: column; justify-content: center;
       padding: 8vw 5vw 8vw 8vw;
       position: relative;
@@ -164,7 +165,8 @@ body {
     .hero-bag-scene {
       position: relative; width: 320px; height: 400px;
     }
-/* Market bag body */
+
+    /* Market bag body */
     .bag-body {
       position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
       width: 220px; height: 260px;
@@ -192,7 +194,6 @@ body {
         0deg, transparent, transparent 22px, rgba(0,0,0,0.06) 22px, rgba(0,0,0,0.06) 24px
       );
     }
-
     /* Vine strap left */
     .strap {
       position: absolute; bottom: 290px; 
@@ -396,8 +397,7 @@ body {
       font-size: 1.4rem;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
-
-    /* color variants */
+/* color variants */
     .variant-citrus .bag-mini-body { background: #e8c84a; }
     .variant-citrus .bag-mini-strap { background: #6bbf73; }
     .variant-citrus .product-card-img { background: #1c1a10; }
@@ -627,8 +627,7 @@ body {
 
 
   </section>
-
-  <!-- MARQUEE -->
+<!-- MARQUEE -->
   <div class="marquee-bar">
     <div class="marquee-track">
       <span>Handmade with love</span><span class="accent">✦</span>
@@ -941,12 +940,12 @@ body {
           <label style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); display:block; margin-bottom:0.4rem; font-family:var(--sans);">Notes (optional)</label>
           <textarea id="f-notes" rows="2" style="width:100%; border:1px solid var(--gray); padding:0.75rem 1rem; font-family:var(--sans); font-size:0.85rem; outline:none; resize:none;" placeholder="Special requests, color preferences..."></textarea>
         </div>
-        <button type="button" onclick="submitOrder()" style="width:100%; background:var(--black); color:var(--white); border:none; padding:1rem; font-family:var(--sans); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; margin-top:0.5rem;">Place Order</button>
-        <p style="font-size:0.7rem; color:var(--mid); text-align:center;">Payment will be arranged after your order is confirmed.</p>
+        <!-- PayPal Button Container -->
+        <div id="paypal-button-container" style="margin-top:0.5rem;"></div>
+        <p style="font-size:0.7rem; color:var(--mid); text-align:center; margin-top:0.5rem;">Pay securely with PayPal, credit, or debit card.</p>
       </form>
     </div>
-
-    <!-- CONFIRMATION VIEW -->
+<!-- CONFIRMATION VIEW -->
     <div id="confirmation-view" style="display:none; flex:1; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:3rem 2rem;">
       <div style="font-size:3rem; margin-bottom:1.5rem;">🧶</div>
       <h3 style="font-family:var(--serif); font-size:1.8rem; font-weight:300; margin-bottom:1rem;">Order Received!</h3>
@@ -1034,6 +1033,7 @@ body {
       });
       const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
       document.getElementById('checkout-total').textContent = '$' + total.toFixed(2);
+      setTimeout(initPayPalButton, 300);
     }
 
     function goToBag() {
@@ -1083,6 +1083,75 @@ body {
     }
 
     document.querySelector('.nav-bag').addEventListener('click', openCart);
+  </script>
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AReanTW9X_7HEzgajr634RFXnh-B25mmD_dPXcfcVM2Z4UPyMskvOtcz9f-YGXhOt2Pkl9BUrJUJwOZZ&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      const container = document.getElementById('paypal-button-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'black',
+          layout: 'vertical',
+          label: 'pay'
+        },
+        createOrder: function(data, actions) {
+          const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+          const itemsList = cart.map(i => i.name + ' x' + i.qty).join(', ');
+          return actions.order.create({
+            purchase_units: [{
+              description: 'DreaCrochet Order: ' + itemsList,
+              amount: {
+                currency_code: 'USD',
+                value: total.toFixed(2)
+              }
+            }],
+            application_context: {
+              shipping_preference: 'GET_FROM_FILE'
+            }
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(async function(details) {
+            const name = document.getElementById('f-name').value.trim();
+            const email = document.getElementById('f-email').value.trim();
+            const address = document.getElementById('f-address').value.trim();
+            const phone = document.getElementById('f-phone').value.trim();
+            const notes = document.getElementById('f-notes').value.trim();
+            const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+            const itemsList = cart.map(i => i.name + ' x' + i.qty + ' — $' + (i.price * i.qty).toFixed(2)).join('\n');
+
+            // Send to Formspree
+            try {
+              await fetch('https://formspree.io/f/xdaranjy', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  name, email, phone, address, notes,
+                  order: itemsList,
+                  total: '$' + total.toFixed(2),
+                  paypal_transaction: details.id,
+                  payment_status: 'PAID'
+                })
+              });
+            } catch(e) { console.log('Formspree error', e); }
+
+            // Show confirmation
+            document.getElementById('checkout-view').style.display = 'none';
+            document.getElementById('confirmation-view').style.display = 'flex';
+            document.getElementById('cart-header-title').textContent = 'Order Confirmed!';
+          });
+        },
+        onError: function(err) {
+          alert('Payment failed. Please try again or contact us at DreaCrochetLLC@gmail.com');
+        }
+      }).render('#paypal-button-container');
+    }
   </script>
 </body>
 </html>
